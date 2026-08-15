@@ -9,87 +9,230 @@
     <!-- Title shown on browser tab -->
     <title>Digital Calculator</title>
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Google Font for beautiful text -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Linking CSS file -->
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Linking our CSS file -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- Main wrapper -->
+    <!-- Main wrapper holds everything -->
     <div class="wrapper">
 
-        <!-- Title Section -->
+        <!-- ========== TITLE SECTION ========== -->
         <div class="title-section">
-            <h1 class="main-title">✨ Digital Calculator</h1>
-            <p class="sub-title">Calculate | History | Simple UI</p>
+
+            <!-- Calculator icon + title -->
+            <div class="title-row">
+                <i class="fas fa-calculator title-icon"></i>
+                <h1 class="main-title">Digital Calculator</h1>
+            </div>
+
+            <!-- Small subtitle -->
+            <p class="sub-title">
+                <span>Calculate</span>
+                <span>•</span>
+                <span>History</span>
+                <span>•</span>
+                <span>Smart UI</span>
+            </p>
         </div>
 
-        <!-- Main box holds calculator + history -->
+        <!-- ========== MAIN CONTENT ========== -->
         <div class="main-box">
 
-            <!-- Calculator Side -->
+            <!-- ===== CALCULATOR SECTION ===== -->
             <div class="calculator">
 
-                <!-- Screen -->
+                <!-- Display Screen -->
                 <div class="display">
-                    <p class="screen-label">Result</p>
-                    <input type="text" id="screen" placeholder="0" readonly>
+
+                    <!-- Shows the expression like 5+3 -->
+                    <div id="expression" class="expression-text"></div>
+
+                    <!-- Shows the answer or current input -->
+                    <input 
+                        type="text" 
+                        id="screen" 
+                        placeholder="0" 
+                        readonly
+                    >
                 </div>
 
-                <!-- Buttons -->
+                <!-- All Buttons -->
                 <div class="buttons">
 
                     <!-- Row 1 -->
-                    <button class="btn-clear" onclick="clearScreen()">C</button>
-                    <button class="btn-special" onclick="deleteLast()">⌫</button>
-                    <button class="btn-special" onclick="appendValue('%')">%</button>
-                    <button class="btn-operator" onclick="appendValue('/')">÷</button>
+                    <button 
+                        class="btn-clear" 
+                        onclick="clearScreen()"
+                        title="Clear All (Escape)">
+                        AC
+                    </button>
+
+                    <button 
+                        class="btn-special" 
+                        onclick="deleteLast()"
+                        title="Delete (Backspace)">
+                        ⌫
+                    </button>
+
+                    <button 
+                        class="btn-special" 
+                        onclick="appendValue('%')"
+                        title="Percentage">
+                        %
+                    </button>
+
+                    <button 
+                        class="btn-operator" 
+                        onclick="appendValue('/')"
+                        title="Divide">
+                        ÷
+                    </button>
 
                     <!-- Row 2 -->
-                    <button class="btn-number" onclick="appendValue('7')">7</button>
-                    <button class="btn-number" onclick="appendValue('8')">8</button>
-                    <button class="btn-number" onclick="appendValue('9')">9</button>
-                    <button class="btn-operator" onclick="appendValue('*')">×</button>
+                    <button 
+                        class="btn-number" 
+                        onclick="appendValue('7')">
+                        7
+                    </button>
+
+                    <button 
+                        class="btn-number" 
+                        onclick="appendValue('8')">
+                        8
+                    </button>
+
+                    <button 
+                        class="btn-number" 
+                        onclick="appendValue('9')">
+                        9
+                    </button>
+
+                    <button 
+                        class="btn-operator" 
+                        onclick="appendValue('*')"
+                        title="Multiply">
+                        ×
+                    </button>
 
                     <!-- Row 3 -->
-                    <button class="btn-number" onclick="appendValue('4')">4</button>
-                    <button class="btn-number" onclick="appendValue('5')">5</button>
-                    <button class="btn-number" onclick="appendValue('6')">6</button>
-                    <button class="btn-operator" onclick="appendValue('-')">−</button>
+                    <button 
+                        class="btn-number" 
+                        onclick="appendValue('4')">
+                        4
+                    </button>
+
+                    <button 
+                        class="btn-number" 
+                        onclick="appendValue('5')">
+                        5
+                    </button>
+
+                    <button 
+                        class="btn-number" 
+                        onclick="appendValue('6')">
+                        6
+                    </button>
+
+                    <button 
+                        class="btn-operator" 
+                        onclick="appendValue('-')"
+                        title="Subtract">
+                        −
+                    </button>
 
                     <!-- Row 4 -->
-                    <button class="btn-number" onclick="appendValue('1')">1</button>
-                    <button class="btn-number" onclick="appendValue('2')">2</button>
-                    <button class="btn-number" onclick="appendValue('3')">3</button>
-                    <button class="btn-operator" onclick="appendValue('+')">+</button>
+                    <button 
+                        class="btn-number" 
+                        onclick="appendValue('1')">
+                        1
+                    </button>
+
+                    <button 
+                        class="btn-number" 
+                        onclick="appendValue('2')">
+                        2
+                    </button>
+
+                    <button 
+                        class="btn-number" 
+                        onclick="appendValue('3')">
+                        3
+                    </button>
+
+                    <button 
+                        class="btn-operator" 
+                        onclick="appendValue('+')"
+                        title="Add">
+                        +
+                    </button>
 
                     <!-- Row 5 -->
-                    <button class="btn-number zero" onclick="appendValue('0')">0</button>
-                    <button class="btn-number" onclick="appendValue('.')">.</button>
-                    <button class="btn-equal" onclick="calculate()">=</button>
+                    <button 
+                        class="btn-number zero" 
+                        onclick="appendValue('0')">
+                        0
+                    </button>
+
+                    <button 
+                        class="btn-number" 
+                        onclick="appendValue('.')">
+                        .
+                    </button>
+
+                    <button 
+                        class="btn-equal" 
+                        onclick="calculate()"
+                        title="Calculate (Enter)">
+                        =
+                    </button>
 
                 </div>
+
+                <!-- Keyboard hint -->
+                <p class="keyboard-hint">
+                    <i class="fas fa-keyboard"></i>
+                    Keyboard supported
+                </p>
+
             </div>
 
-            <!-- History Side -->
+            <!-- ===== HISTORY SECTION ===== -->
             <div class="history-box">
 
                 <!-- History Header -->
                 <div class="history-header">
-                    <h2>📜 History</h2>
-                    <button class="btn-clear-history" onclick="clearHistory()">
-                        Clear All
+                    <div class="history-title">
+                        <i class="fas fa-history"></i>
+                        <h2>History</h2>
+                    </div>
+                    <button 
+                        class="btn-clear-history" 
+                        onclick="clearHistory()"
+                        title="Clear all history">
+                        <i class="fas fa-trash"></i>
+                        Clear
                     </button>
                 </div>
 
+                <!-- History count -->
+                <p class="history-count" id="historyCount">
+                    0 calculations
+                </p>
+
                 <!-- History List -->
-                <!-- All past calculations will show here -->
                 <ul id="historyList">
                     <li class="empty-history">
-                        No calculations yet...
+                        <i class="fas fa-clock"></i>
+                        <p>No calculations yet</p>
+                        <span>Your history will appear here</span>
                     </li>
                 </ul>
 
@@ -98,11 +241,17 @@
         </div>
 
         <!-- Footer -->
-        <p class="footer-text">Made with ❤️ | Digital Calculator</p>
+        <div class="footer">
+            <p class="footer-text">
+                ✨ Digital Calculator | Made with 
+                <i class="fas fa-heart"></i> 
+                for College Project
+            </p>
+        </div>
 
     </div>
 
-    <!-- Linking JavaScript -->
+    <!-- Linking JavaScript file -->
     <script src="script.js"></script>
 
 </body>

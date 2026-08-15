@@ -1,5 +1,5 @@
 /* ================================
-   RESET - Remove default styles
+   RESET
 ================================ */
 * {
     margin: 0;
@@ -10,27 +10,56 @@
 
 
 /* ================================
-   BODY - Page background
+   SCROLLBAR STYLE
 ================================ */
-body {
-    background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 180, 216, 0.4);
+    border-radius: 10px;
 }
 
 
 /* ================================
-   WRAPPER - Holds everything
+   BODY
+================================ */
+body {
+    background: linear-gradient(135deg, 
+        #0d0d1a 0%, 
+        #1a1a2e 40%, 
+        #16213e 70%, 
+        #0f3460 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+
+/* ================================
+   WRAPPER
 ================================ */
 .wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
-    padding: 20px;
+    gap: 20px;
     width: 100%;
+    max-width: 750px;
+    /* Fade in animation when page loads */
+    animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
 
@@ -39,51 +68,90 @@ body {
 ================================ */
 .title-section {
     text-align: center;
-    margin-bottom: 10px;
 }
 
-/* Big title */
+/* Title row with icon */
+.title-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+/* Calculator icon */
+.title-icon {
+    font-size: 32px;
+    color: #00b4d8;
+    /* Glowing icon */
+    filter: drop-shadow(0 0 10px rgba(0, 180, 216, 0.8));
+    /* Floating animation */
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%   { transform: translateY(0px); }
+    50%  { transform: translateY(-8px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Main title */
 .main-title {
-    font-size: 36px;
-    font-weight: 700;
-    color: white;
-    text-shadow: 0 0 20px rgba(0, 180, 216, 0.8),
-                 0 0 40px rgba(0, 180, 216, 0.4);
+    font-size: 38px;
+    font-weight: 800;
+    /* Gradient text color */
+    background: linear-gradient(135deg, #ffffff, #00b4d8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     letter-spacing: 2px;
-    margin-bottom: 5px;
 }
 
-/* Small subtitle */
+/* Subtitle */
 .sub-title {
-    font-size: 13px;
-    color: rgba(255, 255, 255, 0.5);
-    letter-spacing: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 3px;
     font-weight: 300;
+}
+
+.sub-title span {
+    color: rgba(0, 180, 216, 0.6);
 }
 
 
 /* ================================
-   MAIN BOX - Calculator + History
+   MAIN BOX
 ================================ */
 .main-box {
     display: flex;
     gap: 20px;
     align-items: flex-start;
+    width: 100%;
+    justify-content: center;
 }
 
 
 /* ================================
-   CALCULATOR BOX
+   CALCULATOR
 ================================ */
 .calculator {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 25px;
+    /* Glass morphism effect */
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 28px;
     padding: 25px;
     width: 340px;
-    box-shadow: 0 0 40px rgba(0, 180, 216, 0.2),
-                0 20px 60px rgba(0, 0, 0, 0.5);
+    box-shadow: 
+        0 0 0 1px rgba(255,255,255,0.05),
+        0 20px 50px rgba(0, 0, 0, 0.5),
+        0 0 80px rgba(0, 180, 216, 0.08);
 }
 
 
@@ -91,39 +159,49 @@ body {
    DISPLAY SCREEN
 ================================ */
 .display {
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 18px;
+    padding: 15px 18px;
     margin-bottom: 20px;
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 15px;
-    padding: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    /* Glowing border */
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3),
+                0 0 20px rgba(0, 180, 216, 0.05);
 }
 
-/* Label above screen */
-.screen-label {
-    font-size: 11px;
-    color: rgba(0, 180, 216, 0.8);
-    letter-spacing: 3px;
+/* Expression text above answer */
+.expression-text {
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 13px;
+    text-align: right;
+    min-height: 20px;
     margin-bottom: 5px;
-    text-transform: uppercase;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-/* Input screen */
+/* Main answer input */
 #screen {
     width: 100%;
-    height: 60px;
     background: transparent;
     border: none;
     color: white;
-    font-size: 32px;
+    font-size: 36px;
     text-align: right;
-    padding: 0 5px;
     outline: none;
-    font-weight: 600;
+    font-weight: 700;
+    /* Smooth font size transition */
+    transition: font-size 0.2s;
 }
 
-/* Placeholder */
 #screen::placeholder {
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.2);
+    font-weight: 300;
 }
 
 
@@ -133,96 +211,155 @@ body {
 .buttons {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
+    gap: 10px;
 }
 
 
 /* ================================
-   ALL BUTTONS
+   ALL BUTTONS BASE
 ================================ */
 button {
     height: 65px;
     border: none;
-    border-radius: 15px;
+    border-radius: 16px;
     font-size: 20px;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s ease;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.15s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Ripple effect on click */
+button::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+button:active::after {
+    opacity: 1;
 }
 
 button:active {
-    transform: scale(0.92);
-    box-shadow: none;
+    transform: scale(0.91);
 }
 
 
-/* Number buttons */
+/* ================================
+   NUMBER BUTTONS
+================================ */
 .btn-number {
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.07);
     color: white;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .btn-number:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.15);
     transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.15);
 }
 
 
-/* Operator buttons */
+/* ================================
+   OPERATOR BUTTONS
+================================ */
 .btn-operator {
-    background: linear-gradient(135deg, #00b4d8, #0077b6);
+    background: linear-gradient(145deg, #0096c7, #0077b6);
     color: white;
+    box-shadow: 0 4px 15px rgba(0, 119, 182, 0.3);
 }
 
 .btn-operator:hover {
+    background: linear-gradient(145deg, #00b4d8, #0096c7);
     transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0, 180, 216, 0.4);
+    box-shadow: 0 8px 25px rgba(0, 180, 216, 0.4);
 }
 
 
-/* Clear button */
+/* ================================
+   CLEAR BUTTON
+================================ */
 .btn-clear {
-    background: linear-gradient(135deg, #e94560, #c0392b);
+    background: linear-gradient(145deg, #e94560, #c0392b);
     color: white;
+    box-shadow: 0 4px 15px rgba(233, 69, 96, 0.3);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
 .btn-clear:hover {
+    background: linear-gradient(145deg, #ff6b81, #e94560);
     transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(233, 69, 96, 0.4);
+    box-shadow: 0 8px 25px rgba(233, 69, 96, 0.5);
 }
 
 
-/* Special buttons */
+/* ================================
+   SPECIAL BUTTONS
+================================ */
 .btn-special {
-    background: rgba(255, 255, 255, 0.12);
+    background: rgba(0, 180, 216, 0.1);
     color: #00b4d8;
-    border: 1px solid rgba(0, 180, 216, 0.3);
+    border: 1px solid rgba(0, 180, 216, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .btn-special:hover {
-    background: rgba(0, 180, 216, 0.2);
+    background: rgba(0, 180, 216, 0.25);
     transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 180, 216, 0.2);
+    border-color: rgba(0, 180, 216, 0.4);
 }
 
 
-/* Equal button */
+/* ================================
+   EQUAL BUTTON
+================================ */
 .btn-equal {
-    background: linear-gradient(135deg, #00b894, #00cec9);
+    background: linear-gradient(145deg, #00b894, #00897b);
     color: white;
-    font-size: 24px;
+    font-size: 26px;
+    box-shadow: 0 4px 15px rgba(0, 184, 148, 0.3);
 }
 
 .btn-equal:hover {
+    background: linear-gradient(145deg, #00cec9, #00b894);
     transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0, 184, 148, 0.4);
+    box-shadow: 0 8px 25px rgba(0, 184, 148, 0.5);
 }
 
 
-/* Zero button - takes 2 spaces */
+/* Zero takes 2 columns */
 .zero {
     grid-column: span 2;
+}
+
+
+/* ================================
+   KEYBOARD HINT
+================================ */
+.keyboard-hint {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.2);
+    font-size: 11px;
+    margin-top: 15px;
+    letter-spacing: 1px;
+}
+
+.keyboard-hint i {
+    margin-right: 5px;
+    color: rgba(0, 180, 216, 0.4);
 }
 
 
@@ -230,117 +367,242 @@ button:active {
    HISTORY BOX
 ================================ */
 .history-box {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 28px;
     padding: 20px;
-    width: 250px;
-    /* Same height as calculator */
-    min-height: 480px;
-    box-shadow: 0 0 40px rgba(0, 180, 216, 0.2),
-                0 20px 60px rgba(0, 0, 0, 0.5);
+    width: 240px;
+    min-height: 530px;
+    box-shadow: 
+        0 0 0 1px rgba(255,255,255,0.05),
+        0 20px 50px rgba(0, 0, 0, 0.5),
+        0 0 80px rgba(0, 180, 216, 0.08);
+    display: flex;
+    flex-direction: column;
 }
 
 
-/* History header */
+/* History Header */
 .history-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 15px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 5px;
 }
 
-.history-header h2 {
+.history-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.history-title i {
+    color: #00b4d8;
+    font-size: 14px;
+}
+
+.history-title h2 {
     color: white;
     font-size: 16px;
     font-weight: 600;
 }
 
+/* History count text */
+.history-count {
+    color: rgba(255, 255, 255, 0.25);
+    font-size: 10px;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
 
 /* Clear history button */
 .btn-clear-history {
-    background: rgba(233, 69, 96, 0.2);
+    background: rgba(233, 69, 96, 0.1);
     color: #e94560;
-    border: 1px solid rgba(233, 69, 96, 0.3);
-    border-radius: 8px;
-    padding: 5px 10px;
-    font-size: 12px;
+    border: 1px solid rgba(233, 69, 96, 0.2);
+    border-radius: 10px;
+    padding: 6px 12px;
+    font-size: 11px;
     height: auto;
     cursor: pointer;
     transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 600;
 }
 
 .btn-clear-history:hover {
-    background: rgba(233, 69, 96, 0.4);
+    background: rgba(233, 69, 96, 0.25);
+    border-color: rgba(233, 69, 96, 0.4);
     transform: none;
-    box-shadow: none;
+}
+
+.btn-clear-history:active {
+    transform: scale(0.95) !important;
 }
 
 
-/* History list */
+/* History List */
 #historyList {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    /* Makes list scrollable */
-    max-height: 380px;
+    gap: 8px;
     overflow-y: auto;
+    flex: 1;
+    padding-right: 2px;
 }
 
 /* Each history item */
 #historyList li {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 12px;
     padding: 10px 12px;
-    color: white;
-    font-size: 13px;
     cursor: pointer;
     transition: all 0.2s;
+    /* Slide in animation */
+    animation: slideIn 0.3s ease;
 }
 
-/* History item hover */
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(20px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
 #historyList li:hover {
-    background: rgba(0, 180, 216, 0.15);
-    border-color: rgba(0, 180, 216, 0.3);
+    background: rgba(0, 180, 216, 0.1);
+    border-color: rgba(0, 180, 216, 0.25);
+    transform: translateX(-3px);
 }
 
-/* Expression text in history */
+/* Expression in history */
 #historyList li .expression {
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.4);
     font-size: 11px;
-    margin-bottom: 3px;
+    margin-bottom: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-/* Answer text in history */
+/* Answer in history */
 #historyList li .answer {
     color: #00b4d8;
-    font-size: 15px;
-    font-weight: 600;
+    font-size: 16px;
+    font-weight: 700;
 }
 
 /* Empty history message */
 .empty-history {
-    color: rgba(255, 255, 255, 0.3) !important;
-    text-align: center;
-    font-size: 13px !important;
-    border: none !important;
-    background: transparent !important;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px !important;
+    gap: 10px;
     cursor: default !important;
-    margin-top: 30px;
+    background: transparent !important;
+    border: none !important;
+}
+
+.empty-history i {
+    font-size: 30px;
+    color: rgba(255, 255, 255, 0.1);
+}
+
+.empty-history p {
+    color: rgba(255, 255, 255, 0.25);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.empty-history span {
+    color: rgba(255, 255, 255, 0.15);
+    font-size: 11px;
+}
+
+.empty-history:hover {
+    transform: none !important;
+    background: transparent !important;
+    border-color: transparent !important;
 }
 
 
 /* ================================
    FOOTER
 ================================ */
+.footer {
+    text-align: center;
+}
+
 .footer-text {
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.2);
     font-size: 12px;
-    letter-spacing: 2px;
-    margin-top: 5px;
+    letter-spacing: 1px;
+}
+
+.footer-text i {
+    color: #e94560;
+    margin: 0 3px;
+}
+
+
+/* ================================
+   RESPONSIVE - Mobile Design
+================================ */
+
+/* Tablet */
+@media (max-width: 700px) {
+    .main-box {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .history-box {
+        width: 340px;
+        min-height: 200px;
+    }
+
+    #historyList {
+        max-height: 150px;
+    }
+
+    .main-title {
+        font-size: 28px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 400px) {
+    .calculator {
+        width: 310px;
+        padding: 20px;
+    }
+
+    .history-box {
+        width: 310px;
+    }
+
+    button {
+        height: 58px;
+        font-size: 18px;
+    }
+
+    #screen {
+        font-size: 30px;
+    }
+
+    .main-title {
+        font-size: 24px;
+    }
+
+    .title-icon {
+        font-size: 24px;
+    }
 }
