@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Basic page settings -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Title shown on browser tab -->
+    <title>Digital Calculator</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Linking CSS file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Main wrapper -->
+    <div class="wrapper">
+
+        <!-- Title Section -->
+        <div class="title-section">
+            <h1 class="main-title">✨ Digital Calculator</h1>
+            <p class="sub-title">Calculate | History | Simple UI</p>
+        </div>
+
+        <!-- Main box holds calculator + history -->
+        <div class="main-box">
+
+            <!-- Calculator Side -->
+            <div class="calculator">
+
+                <!-- Screen -->
+                <div class="display">
+                    <p class="screen-label">Result</p>
+                    <input type="text" id="screen" placeholder="0" readonly>
+                </div>
+
+                <!-- Buttons -->
+                <div class="buttons">
+
+                    <!-- Row 1 -->
+                    <button class="btn-clear" onclick="clearScreen()">C</button>
+                    <button class="btn-special" onclick="deleteLast()">⌫</button>
+                    <button class="btn-special" onclick="appendValue('%')">%</button>
+                    <button class="btn-operator" onclick="appendValue('/')">÷</button>
+
+                    <!-- Row 2 -->
+                    <button class="btn-number" onclick="appendValue('7')">7</button>
+                    <button class="btn-number" onclick="appendValue('8')">8</button>
+                    <button class="btn-number" onclick="appendValue('9')">9</button>
+                    <button class="btn-operator" onclick="appendValue('*')">×</button>
+
+                    <!-- Row 3 -->
+                    <button class="btn-number" onclick="appendValue('4')">4</button>
+                    <button class="btn-number" onclick="appendValue('5')">5</button>
+                    <button class="btn-number" onclick="appendValue('6')">6</button>
+                    <button class="btn-operator" onclick="appendValue('-')">−</button>
+
+                    <!-- Row 4 -->
+                    <button class="btn-number" onclick="appendValue('1')">1</button>
+                    <button class="btn-number" onclick="appendValue('2')">2</button>
+                    <button class="btn-number" onclick="appendValue('3')">3</button>
+                    <button class="btn-operator" onclick="appendValue('+')">+</button>
+
+                    <!-- Row 5 -->
+                    <button class="btn-number zero" onclick="appendValue('0')">0</button>
+                    <button class="btn-number" onclick="appendValue('.')">.</button>
+                    <button class="btn-equal" onclick="calculate()">=</button>
+
+                </div>
+            </div>
+
+            <!-- History Side -->
+            <div class="history-box">
+
+                <!-- History Header -->
+                <div class="history-header">
+                    <h2>📜 History</h2>
+                    <button class="btn-clear-history" onclick="clearHistory()">
+                        Clear All
+                    </button>
+                </div>
+
+                <!-- History List -->
+                <!-- All past calculations will show here -->
+                <ul id="historyList">
+                    <li class="empty-history">
+                        No calculations yet...
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <p class="footer-text">Made with ❤️ | Digital Calculator</p>
+
+    </div>
+
+    <!-- Linking JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>
